@@ -4,7 +4,7 @@ get '/' do
 end
 
 post '/urls' do
-  @url = Url.new(:long_url => params[:long_url])
+  @url = Url.new(params[:url])
   puts @url.inspect
   @url.short_url = Url.shorten
   puts @url.inspect

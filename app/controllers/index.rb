@@ -1,12 +1,18 @@
 get '/' do
+  @urls = Url.all
   erb :index
 end
 
-post '/urls/:long_url' do
-  # @url = Url.new(params[:long_url])
-  @url.shot_url = #shorten the shit
-  @url.save
-  # create a new Url
+post '/urls' do
+  @url = Url.new(:long_url => params[:long_url])
+  puts @url.inspect
+  @url.short_url = Url.shorten
+  puts @url.inspect
+  if @url.save
+    redirect to ("/")
+  else
+    "Nope!"
+  end
 end
 
 # e.g., /q6bda
